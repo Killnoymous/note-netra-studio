@@ -74,16 +74,7 @@ const HeroSection = () => {
           </RevealOnScroll>
         </div>
 
-        {/* Scroll indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-up hidden md:block"
-          style={{ animationDelay: '0.6s' }}
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-xs text-muted-foreground">Scroll</span>
-            <div className="w-px h-8 bg-gradient-to-b from-muted-foreground to-transparent" />
-          </div>
-        </div>
+
       </div>
     </section>
   );
