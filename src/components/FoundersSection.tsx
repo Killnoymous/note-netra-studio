@@ -4,8 +4,8 @@ const founders = [
     role: 'Co-founder',
     focus: 'Engineering & Product',
     initial: 'CS',
-    skills: ['System Design', 'AI Architecture', 'Product'],
-    bio: 'Architecting the core processing engine and defining the product roadmap.',
+    skills: ['System Design', 'Scalability', 'Product Eng'],
+    bio: 'Leads product engineering and system design. Experienced in building scalable applications, core logic, and production-ready architectures. Focused on turning complex ideas into reliable products.',
   },
   {
     name: 'Anmol Garg',
@@ -14,8 +14,8 @@ const founders = [
     initial: 'AG',
     image: '/anmol_garg.png',
     imagePosition: '50% 20%',
-    skills: ['Cloud Infra', 'Security', 'Scalability'],
-    bio: 'Designing robust, scalable systems enabling enterprise-grade reliability.',
+    skills: ['Architecture', 'Backend', 'Automation'],
+    bio: 'Specializes in system architecture, backend engineering, and automation. Works on infrastructure, integrations, and performance-critical systems. Hands-on with real-world deployments and technical research.',
   },
   {
     name: 'Tanishq Dagar',
@@ -23,8 +23,8 @@ const founders = [
     focus: 'Strategy & Operations',
     initial: 'TD',
     image: '/tanishq_dagar.png',
-    skills: ['Strategy', 'Operations', 'Growth'],
-    bio: 'Leading go-to-market strategy and driving operational excellence.',
+    skills: ['Strategy', 'Applied AI', 'R&D'],
+    bio: 'Drives strategy, execution, and applied innovation. Led projects including vape detection systems, piezoelectric energy research, and applied AI tools. Focused on solving real institutional and operational problems.',
   },
 ];
 
