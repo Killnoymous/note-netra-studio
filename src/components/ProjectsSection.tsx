@@ -64,65 +64,100 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <RevealOnScroll key={project.title} delay={index * 100} className="h-full">
               <div
-                className="card-3d surface-elevated glow-subtle rounded-xl p-8 lg:p-10 group cursor-pointer h-full"
+                className={`
+                  relative h-full transition-all duration-300 group cursor-pointer
+                  ${project.title === 'Note Netra Core'
+                    ? 'rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.1)] hover:border-white/20'
+                    : 'card-3d surface-elevated glow-subtle rounded-xl p-8 lg:p-10'}
+                `}
               >
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors duration-200">
-                      {project.title === 'Note Netra Core' ? (
-                        <a href="https://www.notenetra.in/" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                          {project.title}
-                        </a>
-                      ) : (
-                        project.title
-                      )}
-                    </h3>
-                    {project.title === 'Note Netra Core' && (
-                      <p className="text-xs text-primary font-mono mt-1">Subsidiary of Kenet</p>
-                    )}
+                {project.title === 'Note Netra Core' ? (
+                  // Glassmorphism Card Layout for Note Netra Core
+                  <div className="p-8 lg:p-10 flex flex-col h-full">
+                    {/* Header */}
+                    <div className="flex items-start gap-4 mb-6">
+                      {/* Logo N */}
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center shrink-0">
+                        <span className="font-sans font-bold text-xl text-white">N</span>
+                      </div>
+
+                      <div className="flex flex-col">
+                        <h3 className="font-bold text-white text-2xl tracking-tight leading-none mb-1">
+                          <a href="https://www.notenetra.in/" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:text-primary transition-colors">
+                            {project.title}
+                          </a>
+                        </h3>
+                        <span className="text-sm font-light text-white/50 tracking-wide">
+                          Subsidiary
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Body */}
+                    <p className="text-white/70 text-base leading-relaxed mb-8">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="mt-auto flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-4 py-1.5 text-xs font-medium text-white/80 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <span
-                    className={`px-2 py-1 text-xs rounded-full font-mono ${statusColors[project.status]}`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
+                ) : (
+                  // Standard Card Layout for others
+                  <div className="p-8 lg:p-10 h-full flex flex-col">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors duration-200">
+                        {project.title}
+                      </h3>
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full font-mono ${statusColors[project.status]}`}
+                      >
+                        {project.status}
+                      </span>
+                    </div>
 
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {project.description}
-                </p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {project.description}
+                    </p>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs font-mono text-muted-foreground bg-muted rounded-full border border-transparent group-hover:border-border transition-colors duration-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs font-mono text-muted-foreground bg-muted rounded-full border border-transparent group-hover:border-border transition-colors duration-200"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
-                {/* Arrow indicator */}
-                <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground group-hover:text-primary transition-colors duration-200">
-                  <span>Learn more</span>
-                  <svg
-                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </div>
+                    {/* Arrow indicator */}
+                    <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground group-hover:text-primary transition-colors duration-200">
+                      <span>Learn more</span>
+                      <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                )}
               </div>
             </RevealOnScroll>
           ))}
