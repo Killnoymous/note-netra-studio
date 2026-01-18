@@ -4,57 +4,97 @@ const AboutSection = () => {
   const tags = ["Documents", "Notes", "AI Processing", "Search"];
 
   return (
-    <section id="about" className="section-padding flex items-center justify-center min-h-[60vh]">
-      <div className="container-main max-w-4xl">
-        <RevealOnScroll>
-          <div className="relative group">
-            {/* Glossy sheen effect overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl" />
+    <section id="about" className="section-padding">
+      <div className="container-main">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-            <div className="rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(255,255,255,0.07)] p-8 md:p-12 lg:p-16 hover:border-white/20 transition-all duration-300">
-
-              {/* Header */}
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-10">
-                {/* Logo N */}
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-white/20 to-black border border-white/20 shadow-inner flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <span className="font-sans font-bold text-3xl text-white drop-shadow-md">N</span>
-                </div>
-
-                <div className="flex flex-col">
-                  <h2 className="font-bold text-white text-4xl md:text-5xl tracking-tight leading-none mb-2">
-                    Note Netra
-                  </h2>
-                  <span className="text-sm md:text-base font-medium text-white/50 tracking-[0.2em] uppercase">
-                    Subsidiary
-                  </span>
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="space-y-6 text-white/80 text-lg md:text-xl leading-relaxed font-light">
+          {/* Left Column: Text Content */}
+          <div className="order-2 md:order-1">
+            <RevealOnScroll>
+              <div className="accent-line mb-6" />
+              <span className="text-label mb-4 block">About us</span>
+              <h2 className="heading-section mb-6">
+                Two companies.
+                <br />
+                One mission.
+              </h2>
+              <div className="space-y-6 text-body">
                 <p>
-                  Note Netra is a pioneering subsidiary of <span className="font-semibold text-white">Kenet Technologies</span>, dedicated to revolutionizing AI-driven document processing.
+                  At Note Netra, we believe that information overload is a design
+                  problem, not a human one. Our mission is to create tools that
+                  augment your memory, not replace it.
                 </p>
                 <p>
-                  We specialize in intelligent note-taking solutions that help users seamlessly capture, organize, and retrieve information, transforming unstructured data into actionable knowledge.
+                  We are a subsidiary of <span className="font-semibold text-foreground">Kenet Technologies</span>,
+                  carrying forward the legacy of robust engineering into the realm of intelligent information management.
                 </p>
+                <div className="mt-8 flex gap-4">
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-bold text-foreground">3+</span>
+                    <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
+                      Years R&D
+                    </span>
+                  </div>
+                  <div className="w-px h-12 bg-border mx-4" />
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-bold text-foreground">10k+</span>
+                    <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
+                      Users
+                    </span>
+                  </div>
+                </div>
               </div>
-
-              {/* Footer / Tags */}
-              <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-3">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-5 py-2 text-sm font-medium text-white/90 bg-white/5 border border-white/10 rounded-full hover:bg-white/20 hover:scale-105 transition-all duration-300 shadow-sm backdrop-blur-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-            </div>
+            </RevealOnScroll>
           </div>
-        </RevealOnScroll>
+
+          {/* Right Column: Compact Glass Card */}
+          <div className="order-1 md:order-2 flex justify-center md:justify-end">
+            <RevealOnScroll delay={200}>
+              <div className="relative group w-full max-w-[320px]">
+                {/* Glossy sheen effect overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+
+                <div className="rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(255,255,255,0.07)] p-6 hover:border-white/20 transition-all duration-300 transform group-hover:-translate-y-1">
+
+                  {/* Header */}
+                  <div className="flex items-start gap-4 mb-4">
+                    {/* Logo N */}
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/20 to-black border border-white/20 shadow-inner flex items-center justify-center shrink-0">
+                      <span className="font-sans font-bold text-lg text-white drop-shadow-md">N</span>
+                    </div>
+
+                    <div className="flex flex-col">
+                      <h3 className="font-bold text-white text-lg tracking-tight leading-none mb-1">
+                        Note Netra
+                      </h3>
+                      <span className="text-xs font-medium text-white/50 tracking-wider uppercase">
+                        Subsidiary
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Body */}
+                  <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
+                    AI-focused venture for intelligent document processing and note-taking.
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-[10px] font-medium text-white/80 bg-white/5 border border-white/10 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                </div>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
       </div>
     </section>
   );
