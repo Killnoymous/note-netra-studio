@@ -16,7 +16,7 @@ const founders = [
     role: 'Co-founder',
     focus: 'Strategy & Operations',
     initial: 'TD',
-    image: '/tanishq_profile.png',
+    image: '/tanishq_dagar.png',
   },
 ];
 
