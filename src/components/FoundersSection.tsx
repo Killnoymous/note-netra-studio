@@ -15,7 +15,7 @@ const founders = [
     image: '/anmol_garg.png',
     imagePosition: '50% 20%',
     skills: ['Architecture', 'Backend', 'Automation'],
-    bio: 'Specializes in system architecture, backend engineering, and automation. Works on infrastructure, integrations, and performance-critical systems. Hands-on with real-world deployments and technical research.',
+    bio: 'Specializes in system architecture, backend engineering, and automation. Works on infrastructure, integrations, and performance-critical systems. Focused on building reliable systems that scale in production.',
   },
   {
     name: 'Tanishq Dagar',
@@ -59,10 +59,10 @@ const FoundersSection = () => {
                 className="card-3d surface-elevated glow-subtle rounded-xl p-8 text-center group h-full relative overflow-hidden"
               >
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#0A0A0A]/95 backdrop-blur-[2px] p-5 flex flex-col justify-between opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out translate-y-4 group-hover:translate-y-0 z-10 text-left">
+                <div className="absolute inset-0 bg-[#0A0A0A]/95 backdrop-blur-[2px] px-4 py-6 flex flex-col justify-between opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out translate-y-4 group-hover:translate-y-0 z-10 text-left">
                   {/* Top: Focus */}
                   <div className="shrink-0">
-                    <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
+                    <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Focus</p>
                     <p className="text-sm text-foreground font-medium">{founder.focus}</p>
                   </div>
 
