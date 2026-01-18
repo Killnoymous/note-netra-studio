@@ -72,26 +72,26 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
     >
       {/* Info Overlay (Slides in from Right) */}
       <div
-        className={`absolute inset-0 bg-[#0A0A0A] p-8 flex flex-col justify-between z-20 text-left transition-all duration-[800ms] ease-in-out ${showInfo
+        className={`absolute inset-0 bg-[#0A0A0A] p-6 flex flex-col justify-between z-20 text-left transition-all duration-[800ms] ease-in-out ${showInfo
           ? 'opacity-100 translate-x-0 visible'
           : 'opacity-0 translate-x-2 invisible'
           }`}
       >
         {/* Top: Focus */}
         <div className="shrink-0">
-          <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Focus</p>
+          <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
           <p className="text-sm text-foreground font-medium">{founder.focus}</p>
         </div>
 
         {/* Middle: Contribution */}
-        <div className="flex-grow flex flex-col justify-center py-2">
-          <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Contribution</p>
+        <div className="flex-grow flex flex-col justify-center py-1">
+          <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Contribution</p>
           <p className="text-sm text-muted-foreground leading-relaxed">{founder.bio}</p>
         </div>
 
         {/* Bottom: Skills */}
         <div className="shrink-0">
-          <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Skills</p>
+          <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Skills</p>
           <div className="flex flex-wrap gap-1.5">
             {founder.skills.map(skill => (
               <span key={skill} className="text-[10px] px-2 py-1 rounded-full bg-white/5 text-white/80 border border-white/10">
