@@ -25,8 +25,12 @@ const AboutSection = () => {
                   augment your memory, not replace it.
                 </p>
                 <p>
-                  We are a subsidiary of <span className="font-semibold text-foreground">Kenet Technologies</span>,
-                  carrying forward the legacy of robust engineering into the realm of intelligent information management.
+                  We are a subsidiary of{' '}
+                  <span className="inline-flex items-baseline gap-1.5 mx-1 relative top-[2px]">
+                    <span className="font-bold text-[#EEE8DD] text-lg tracking-tight">Kenet</span>
+                    <span className="font-medium text-[#E6DECF]/90 text-base tracking-normal">Technologies</span>
+                  </span>
+                  , carrying forward the legacy of robust engineering into the realm of intelligent information management.
                 </p>
                 <div className="mt-8 flex gap-4">
                   <div className="flex flex-col">
