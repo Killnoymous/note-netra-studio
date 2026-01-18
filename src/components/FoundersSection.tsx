@@ -1,7 +1,7 @@
 const founders = [
   {
     name: 'Tanishq Dagar',
-    role: 'Co-founder',
+    role: 'Chaitanya Sethi',
     focus: 'Engineering & Product',
     initial: 'TD',
   },
