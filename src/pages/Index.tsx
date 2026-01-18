@@ -24,11 +24,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="relative z-10 w-full overflow-hidden">
-        {/* Background Logo Watermark */}
-        <div
-          className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.3] bg-no-repeat bg-center bg-cover transition-transform duration-75 ease-linear will-change-transform"
-          style={{ backgroundImage: 'url("/favicon.png")', transform: `scale(1.5) rotate(${rotation}deg)` }}
-        />
         <HeroSection />
         <GlowSeparator />
         <AboutSection />
