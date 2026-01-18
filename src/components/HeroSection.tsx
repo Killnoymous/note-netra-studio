@@ -3,77 +3,104 @@ import RevealOnScroll from "./RevealOnScroll";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      {/* Background: Dark grid with subtle warm ambient highlights */}
+      <div className="absolute inset-0 bg-[#050505]">
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `
-              linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
+              linear-gradient(#C0B8A0 1px, transparent 1px),
+              linear-gradient(90deg, #C0B8A0 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px',
           }}
         />
+        {/* Warm ambient glow */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#C0B8A0]/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E6DECF]/5 rounded-full blur-[100px] pointer-events-none" />
       </div>
 
-      {/* Subtle radial gradient */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30"
-        style={{
-          background: `radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%)`,
-        }}
-      />
+      <div className="container-main relative z-10 pt-20 flex flex-col items-center">
 
-      <div className="container-main relative z-10 pt-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Label */}
-          <RevealOnScroll delay={100}>
-            <div
-              className="inline-flex items-center gap-2 mb-8"
-            >
-              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-label">Building the future, methodically</span>
-            </div>
-          </RevealOnScroll>
+        {/* 1. Eyebrow */}
+        <RevealOnScroll delay={100}>
+          <div className="mb-6 flex items-center gap-3 opacity-90">
+            <div className="h-px w-8 bg-[#C0B8A0]/40"></div>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-[#C0B8A0] font-medium">
+              Building the future, methodically
+            </span>
+            <div className="h-px w-8 bg-[#C0B8A0]/40"></div>
+          </div>
+        </RevealOnScroll>
 
-          {/* Main heading */}
-          <RevealOnScroll delay={200}>
-            <h1 className="heading-hero mb-6">
-              Technology that{' '}
-              <span className="text-gradient-primary">works</span>
-              <br />
-              for real problems
+        {/* 2. Headline: Two Beats */}
+        <RevealOnScroll delay={300}>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] text-[#EEE8DD] mb-2">
+              We don’t just build technology.
             </h1>
-          </RevealOnScroll>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] text-[#E6DECF]/60">
+              We engineer systems that solve real problems.
+            </h1>
+          </div>
+        </RevealOnScroll>
 
-          {/* Subtext */}
-          <RevealOnScroll delay={300}>
-            <p className="text-body max-w-2xl mx-auto mb-12">
-              We build intelligent systems and automation tools that solve genuine
-              challenges. No hype. No buzzwords. Just engineering that delivers.
-            </p>
-          </RevealOnScroll>
+        {/* 3. Concept Node Graphic */}
+        <RevealOnScroll delay={500} className="w-full flex justify-center mb-16">
+          <div className="relative flex flex-col items-center w-full max-w-lg">
 
-          {/* CTA */}
-          <RevealOnScroll delay={400}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#projects"
-                className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-all duration-200 shadow-depth"
-              >
-                View our work
-              </a>
-              <a
-                href="#about"
-                className="px-8 py-3 border border-border text-foreground rounded-lg font-medium text-sm hover:bg-muted/50 transition-all duration-200"
-              >
-                Learn more
-              </a>
+            {/* Center Node */}
+            <div className="z-10 bg-[#0A0A0A] border border-[#C0B8A0]/20 px-6 py-2.5 rounded-full text-[#EEE8DD] text-sm font-medium tracking-wide shadow-[0_0_15px_rgba(238,232,221,0.05)]">
+              We Engineer
             </div>
-          </RevealOnScroll>
-        </div>
 
+            {/* Thread Structure */}
+            <div className="relative w-full mt-[-1px] flex flex-col items-center">
+              {/* Vertical stem from center */}
+              <div className="h-8 w-px bg-gradient-to-b from-[#C0B8A0]/20 to-[#C0B8A0]/10"></div>
+
+              {/* Horizontal Connector */}
+              <div className="w-[80%] max-w-sm h-px bg-gradient-to-r from-transparent via-[#C0B8A0]/20 to-transparent relative">
+                {/* Vertical droppers */}
+                <div className="absolute left-0 top-0 h-6 w-px bg-[#C0B8A0]/10"></div>
+                <div className="absolute right-0 top-0 h-6 w-px bg-[#C0B8A0]/10"></div>
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 h-6 w-px bg-[#C0B8A0]/10"></div>
+              </div>
+            </div>
+
+            {/* Values Row */}
+            <div className="flex justify-between w-[90%] max-w-[400px] mt-6">
+              <span className="text-[10px] sm:text-xs uppercase tracking-[0.15em] text-[#E6DECF]/70 text-center w-1/3">
+                Reliability
+              </span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-[0.15em] text-[#E6DECF]/70 text-center w-1/3">
+                Clarity
+              </span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-[0.15em] text-[#E6DECF]/70 text-center w-1/3">
+                Impact
+              </span>
+            </div>
+
+          </div>
+        </RevealOnScroll>
+
+        {/* 4. CTAs */}
+        <RevealOnScroll delay={700}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a
+              href="#projects"
+              className="px-8 py-3.5 bg-[#EEE8DD] text-[#0A0A0A] rounded-lg font-medium text-sm hover:bg-[#E6DECF] transition-colors duration-300 shadow-[0_0_20px_rgba(238,232,221,0.1)]"
+            >
+              View our work
+            </a>
+            <a
+              href="#about"
+              className="px-8 py-3.5 border border-[#C0B8A0]/30 text-[#E6DECF] rounded-lg font-medium text-sm hover:bg-[#white]/5 hover:border-[#C0B8A0]/50 transition-all duration-300 backdrop-blur-sm"
+            >
+              Learn more
+            </a>
+          </div>
+        </RevealOnScroll>
 
       </div>
     </section>
