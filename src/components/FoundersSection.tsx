@@ -59,27 +59,28 @@ const FoundersSection = () => {
                 className="card-3d surface-elevated glow-subtle rounded-xl p-8 text-center group h-full relative overflow-hidden"
               >
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#0A0A0A]/95 backdrop-blur-[2px] p-6 flex flex-col justify-center items-center opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out translate-y-4 group-hover:translate-y-0 z-10">
-                  <div className="text-left w-full space-y-4">
-                    <div>
-                      <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
-                      <p className="text-sm text-foreground font-medium">{founder.focus}</p>
-                    </div>
+                <div className="absolute inset-0 bg-[#0A0A0A]/95 backdrop-blur-[2px] p-5 flex flex-col justify-between opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out translate-y-4 group-hover:translate-y-0 z-10 text-left">
+                  {/* Top: Focus */}
+                  <div className="shrink-0">
+                    <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
+                    <p className="text-sm text-foreground font-medium">{founder.focus}</p>
+                  </div>
 
-                    <div>
-                      <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Contribution</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{founder.bio}</p>
-                    </div>
+                  {/* Middle: Contribution */}
+                  <div className="flex-grow flex flex-col justify-center py-2">
+                    <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Contribution</p>
+                    <p className="text-sm text-muted-foreground leading-[1.6]">{founder.bio}</p>
+                  </div>
 
-                    <div>
-                      <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Skills</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {founder.skills.map(skill => (
-                          <span key={skill} className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-white/80 border border-white/10">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                  {/* Bottom: Skills */}
+                  <div className="shrink-0">
+                    <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest">Skills</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {founder.skills.map(skill => (
+                        <span key={skill} className="text-[10px] px-2 py-1 rounded-full bg-white/5 text-white/80 border border-white/10">
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
