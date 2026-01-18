@@ -72,9 +72,9 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
     >
       {/* Info Overlay (Slides in from Right) */}
       <div
-        className={`absolute inset-0 bg-[#0A0A0A] px-4 py-6 flex flex-col justify-between z-20 text-left transition-all duration-[800ms] ease-in-out ${showInfo
-            ? 'opacity-100 translate-x-0 visible'
-            : 'opacity-0 translate-x-2 invisible'
+        className={`absolute inset-0 bg-[#0A0A0A] p-8 flex flex-col justify-between z-20 text-left transition-all duration-[800ms] ease-in-out ${showInfo
+          ? 'opacity-100 translate-x-0 visible'
+          : 'opacity-0 translate-x-2 invisible'
           }`}
       >
         {/* Top: Focus */}
@@ -105,8 +105,8 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
       {/* Profile Content (Slides in from Left) */}
       <div
         className={`h-full flex flex-col justify-center transition-all duration-[800ms] ease-in-out ${showInfo
-            ? 'opacity-0 -translate-x-2'
-            : 'opacity-100 translate-x-0'
+          ? 'opacity-0 -translate-x-2'
+          : 'opacity-100 translate-x-0'
           }`}
       >
         {/* Avatar placeholder or Image */}
