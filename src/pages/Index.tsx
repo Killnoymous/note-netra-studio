@@ -7,14 +7,26 @@ import ProjectsSection from '@/components/ProjectsSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      setRotation(scrolled * 0.15);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="relative z-10 w-full overflow-hidden">
         {/* Background Logo Watermark */}
         <div
-          className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.03] bg-no-repeat bg-center bg-contain"
-          style={{ backgroundImage: 'url("/favicon.png")', transform: 'scale(0.8)' }}
+          className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.3] bg-no-repeat bg-center bg-contain transition-transform duration-75 ease-linear will-change-transform"
+          style={{ backgroundImage: 'url("/favicon.png")', transform: `scale(0.8) rotate(${rotation}deg)` }}
         />
         <HeroSection />
         <AboutSection />
