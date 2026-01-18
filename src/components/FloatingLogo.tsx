@@ -1,7 +1,7 @@
 
 const FloatingLogo = () => {
     return (
-        <div className="fixed top-8 left-8 z-50 animate-fade-in">
+        <div className="fixed top-8 left-8 z-50 animate-fade-in pointer-events-auto cursor-pointer">
             <div className="w-16 h-16 relative hover:scale-110 transition-transform duration-300">
                 <img
                     src="/favicon.png"
