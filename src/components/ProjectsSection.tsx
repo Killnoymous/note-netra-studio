@@ -65,9 +65,9 @@ const ProjectsSection = () => {
             <RevealOnScroll key={project.title} delay={index * 100} className="h-full">
               <div
                 className={`
-                  relative h-full transition-all duration-300 group cursor-pointer
+                  relative h-full transition-all duration-500 group cursor-pointer overflow-hidden
                   ${project.title === 'Note Netra Core'
-                    ? 'rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.1)] hover:border-white/20'
+                    ? 'rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(255,255,255,0.07)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.15)] hover:border-white/20'
                     : 'card-3d surface-elevated glow-subtle rounded-xl p-8 lg:p-10'}
                 `}
               >
