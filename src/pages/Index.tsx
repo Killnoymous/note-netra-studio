@@ -9,6 +9,8 @@ import Footer from '@/components/Footer';
 
 import AmbientBackground from '@/components/AmbientBackground';
 
+import ScrollIndicator from '@/components/ScrollIndicator';
+
 const Index = () => {
   const [rotation, setRotation] = useState(0);
 
@@ -28,7 +30,7 @@ const Index = () => {
       <Navbar />
       <main className="relative z-10 w-full overflow-hidden">
         <HeroSection />
-        <GlowSeparator />
+        <ScrollIndicator />
         <AboutSection />
         <GlowSeparator />
         <FoundersSection />
