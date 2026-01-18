@@ -195,9 +195,9 @@
     @apply max-w-6xl mx-auto px-6 sm:px-8 lg:px-12;
   }
 
-  /* Section spacing */
+  /* Section spacing - Reduced to fill space */
   .section-padding {
-    @apply py-20 sm:py-28 lg:py-36;
+    @apply py-12 sm:py-16 lg:py-24;
   }
 
   /* Animate on load with visible end state */

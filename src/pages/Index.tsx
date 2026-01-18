@@ -9,7 +9,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main>
+      <main className="relative z-10 w-full overflow-hidden">
+        {/* Background Logo Watermark */}
+        <div
+          className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.03] bg-no-repeat bg-center bg-contain"
+          style={{ backgroundImage: 'url("/favicon.png")', transform: 'scale(0.8)' }}
+        />
         <HeroSection />
         <AboutSection />
         <FoundersSection />
