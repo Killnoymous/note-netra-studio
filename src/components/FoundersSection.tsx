@@ -79,22 +79,22 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
       >
         {/* Top: Focus */}
         <div className="shrink-0">
-          <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
-          <p className="text-sm text-foreground font-medium">{founder.focus}</p>
+          <p className="text-[9px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
+          <p className="text-xs text-foreground font-medium">{founder.focus}</p>
         </div>
 
         {/* Middle: Contribution */}
         <div className="flex-grow flex flex-col justify-center py-1">
-          <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Contribution</p>
-          <p className="text-sm text-muted-foreground leading-relaxed">{founder.bio}</p>
+          <p className="text-[9px] font-mono text-primary mb-1 uppercase tracking-widest">Contribution</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">{founder.bio}</p>
         </div>
 
         {/* Bottom: Skills */}
         <div className="shrink-0">
-          <p className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Skills</p>
+          <p className="text-[9px] font-mono text-primary mb-1 uppercase tracking-widest">Skills</p>
           <div className="flex flex-wrap gap-1.5">
             {founder.skills.map(skill => (
-              <span key={skill} className="text-[10px] px-2 py-1 rounded-full bg-white/5 text-white/80 border border-white/10">
+              <span key={skill} className="text-[9px] px-2 py-1 rounded-full bg-white/5 text-white/80 border border-white/10">
                 {skill}
               </span>
             ))}
