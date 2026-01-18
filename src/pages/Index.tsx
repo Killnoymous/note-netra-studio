@@ -9,7 +9,7 @@ const Index = () => {
   return (
     <div className="h-screen w-screen overflow-hidden bg-background">
       <Navbar />
-      <div className="flex h-full w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth">
+      <div className="flex h-full w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar">
         <section className="min-w-[100vw] h-full snap-center overflow-y-auto">
           <HeroSection />
         </section>

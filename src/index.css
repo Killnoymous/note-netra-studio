@@ -83,12 +83,19 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased cursor-none;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
   /* 3D Card Effect */
   .card-3d {
     @apply relative transition-all duration-300 ease-out;
