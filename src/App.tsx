@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ScrollAssist from "./components/ScrollAssist";
-import Pointer3D from "./components/Pointer3D";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +21,6 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ScrollAssist />
-        <Pointer3D />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
