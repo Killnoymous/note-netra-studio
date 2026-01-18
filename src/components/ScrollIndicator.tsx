@@ -20,7 +20,7 @@ const ScrollIndicator = () => {
 
     return (
         <div
-            className="w-full flex flex-col items-center justify-center py-12 pointer-events-none transition-opacity duration-300"
+            className="w-full flex flex-col items-center justify-center py-12 pointer-events-none transition-opacity duration-300 -mt-24 relative z-20"
             style={{ opacity: opacity }}
         >
             <span className="text-[#C0B8A0]/60 text-xs font-medium tracking-[0.2em] uppercase mb-4">
