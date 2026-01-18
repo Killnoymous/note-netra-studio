@@ -11,6 +11,7 @@ const founders = [
     focus: 'Technology & Systems',
     initial: 'AG',
     image: '/anmol_garg.png',
+    imagePosition: '50% 20%',
   },
   {
     name: 'Tanishq Dagar',
@@ -54,7 +55,12 @@ const FoundersSection = () => {
                 {/* Avatar placeholder or Image */}
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center border border-border group-hover:border-primary/30 transition-colors duration-300 overflow-hidden relative">
                   {founder.image ? (
-                    <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
+                    <img
+                      src={founder.image}
+                      alt={founder.name}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: founder.imagePosition || 'center' }}
+                    />
                   ) : (
                     <span className="font-mono text-xl font-semibold text-muted-foreground group-hover:text-primary transition-colors duration-300">
                       {founder.initial}
