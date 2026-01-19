@@ -1,3 +1,5 @@
+import { Linkedin } from 'lucide-react';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -29,8 +31,8 @@ const Footer = () => {
 
           {/* Right side */}
           <div className="flex flex-col md:items-end">
-            <div className="grid grid-cols-2 gap-8 mb-8">
-              <div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+              <div className="md:col-span-2 lg:col-span-1">
                 <span className="text-xs uppercase tracking-widest text-muted-foreground mb-4 block">
                   Company
                 </span>
@@ -77,6 +79,34 @@ const Footer = () => {
                     </a>
                   </li>
                 </ul>
+              </div>
+
+              <div>
+                <span className="text-xs uppercase tracking-widest text-muted-foreground mb-4 block">
+                  Socials
+                </span>
+                <div className="flex gap-4">
+                  <a
+                    href="https://x.com/KenetTech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    aria-label="X (Twitter)"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/kenet-technologies"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
