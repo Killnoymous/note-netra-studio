@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import RevealOnScroll from "./RevealOnScroll";
 
 const founders = [
@@ -32,126 +32,89 @@ const founders = [
 ];
 
 const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: number }) => {
-  const [autoShow, setAutoShow] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  // Re-implemented logic to be robust with hover/pause
+  // Handle click outside for mobile to unflip
   useEffect(() => {
-    if (isHovered || isPaused) return;
-
-    const stagger = index * 200;
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    // Cycle times
-    const SHOW_TIME = 8000; // Info visible duration
-    const HIDE_TIME = 5000; // Main visible duration (shortened slightly to keep flow moving)
-
-    const loop = (show: boolean) => {
-      // Duration to hold the CURRENT state before switching
-      const duration = show ? SHOW_TIME : HIDE_TIME;
-
-      timeoutId = setTimeout(() => {
-        setAutoShow(!show);
-        loop(!show);
-      }, duration);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setIsFlipped(false);
+      }
     };
 
-    // Initial start
-    const startDelay = setTimeout(() => {
-      // Trigger first switch to Show
-      setAutoShow(true);
-      loop(true);
-    }, 500 + stagger);
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      clearTimeout(startDelay);
-      clearTimeout(timeoutId);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [index, isHovered, isPaused]);
-
-
-  // Show info if hovered, paused (tapped), or auto-cycle is active
-  const showInfo = isHovered || isPaused || autoShow;
+  }, []);
 
   return (
     <div
-      className="card-3d surface-elevated glow-subtle rounded-xl p-8 text-center group h-full relative overflow-hidden cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        // When unhovering, if we are "paused", we might want to let autoShow take over cleanly.
-        // Effect will restart loop.
-      }}
-      onClick={() => {
-        setIsPaused(true);
-        // Resume after 8 seconds (matching reading time)
-        setTimeout(() => setIsPaused(false), 8000);
-      }}
+      ref={cardRef}
+      className="perspective-1000 h-[420px] cursor-pointer group"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
     >
-      {/* Info Overlay (Slides in from Left-Bottom) */}
       <div
-        className={`absolute inset-0 bg-[#0A0A0A] p-6 flex flex-col justify-between z-20 text-left transition-all duration-[2000ms] ease-in-out ${showInfo
-          ? 'opacity-100 translate-x-0 translate-y-0 visible'
-          : 'opacity-0 -translate-x-[12px] translate-y-[12px] invisible'
-          }`}
+        className={`w-full h-full relative transition-transform duration-700 ease-in-out transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}
       >
-        {/* Top: Focus */}
-        <div className="shrink-0">
-          <p className="text-[9px] font-mono text-primary mb-1 uppercase tracking-widest">Focus</p>
-          <p className="text-xs text-foreground font-medium">{founder.focus}</p>
-        </div>
-
-        {/* Middle: Contribution */}
-        <div className="flex-grow flex flex-col justify-center py-1">
-          <p className="text-[9px] font-mono text-primary mb-1 uppercase tracking-widest">Contribution</p>
-          <p className="text-xs text-muted-foreground leading-relaxed">{founder.bio}</p>
-        </div>
-
-        {/* Bottom: Skills */}
-        <div className="shrink-0">
-          <p className="text-[9px] font-mono text-primary mb-1 uppercase tracking-widest">Skills</p>
-          <div className="flex flex-wrap gap-1.5">
-            {founder.skills.map(skill => (
-              <span key={skill} className="text-[9px] px-2 py-1 rounded-full bg-white/5 text-white/80 border border-white/10">
-                {skill}
+        {/* Front Face: Profile */}
+        <div className="absolute inset-0 backface-hidden card-3d surface-elevated glow-subtle rounded-xl p-8 flex flex-col justify-center items-center text-center border-border">
+          {/* Avatar / Image */}
+          <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center border border-border group-hover:border-primary/50 transition-colors duration-300 overflow-hidden shadow-lg">
+            {founder.image ? (
+              <img
+                src={founder.image}
+                alt={founder.name}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: founder.imagePosition || 'center' }}
+              />
+            ) : (
+              <span className="font-mono text-2xl font-semibold text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                {founder.initial}
               </span>
-            ))}
+            )}
+          </div>
+
+          <h3 className="font-semibold text-xl text-foreground mb-2">
+            {founder.name}
+          </h3>
+          <p className="text-sm font-medium text-primary mb-4 tracking-wide">{founder.role}</p>
+          <div className="h-px w-8 bg-border mb-4" />
+          <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider opacity-80">
+            {founder.focus}
+          </p>
+        </div>
+
+        {/* Back Face: Info */}
+        <div className="absolute inset-0 backface-hidden rotate-y-180 surface-elevated rounded-xl p-8 flex flex-col justify-between border border-primary/20 bg-[#0A0A0A] shadow-depth">
+
+          {/* Top: Focus */}
+          <div className="shrink-0">
+            <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest border-b border-white/5 pb-1 inline-block">Focus Area</p>
+            <p className="text-sm text-foreground font-medium">{founder.focus}</p>
+          </div>
+
+          {/* Middle: Contribution */}
+          <div className="flex-grow flex flex-col justify-center py-4">
+            <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest border-b border-white/5 pb-1 inline-block">Contribution</p>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{founder.bio}</p>
+          </div>
+
+          {/* Bottom: Skills */}
+          <div className="shrink-0">
+            <p className="text-[10px] font-mono text-primary mb-2 uppercase tracking-widest border-b border-white/5 pb-1 inline-block">Core Stack</p>
+            <div className="flex flex-wrap gap-2">
+              {founder.skills.map(skill => (
+                <span key={skill} className="text-[10px] px-2.5 py-1 rounded-md bg-white/5 text-white/90 border border-white/10 shadow-sm">
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Profile Content (Slides out slightly/Fades) */}
-      <div
-        className={`h-full flex flex-col justify-center transition-all duration-[2000ms] ease-in-out ${showInfo
-          ? 'opacity-0 translate-x-[12px] -translate-y-[12px]'
-          : 'opacity-100 translate-x-0 translate-y-0'
-          }`}
-      >
-        {/* Avatar placeholder or Image */}
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center border border-border group-hover:border-primary/30 transition-colors duration-300 overflow-hidden relative">
-          {founder.image ? (
-            <img
-              src={founder.image}
-              alt={founder.name}
-              className="w-full h-full object-cover"
-              style={{ objectPosition: founder.imagePosition || 'center' }}
-            />
-          ) : (
-            <span className="font-mono text-xl font-semibold text-muted-foreground group-hover:text-primary transition-colors duration-300">
-              {founder.initial}
-            </span>
-          )}
-        </div>
-
-        {/* Info */}
-        <h3 className="font-semibold text-foreground mb-1">
-          {founder.name}
-        </h3>
-        <p className="text-sm text-primary mb-3">{founder.role}</p>
-        <p className="text-xs text-muted-foreground font-mono">
-          {founder.focus}
-        </p>
       </div>
     </div>
   );
