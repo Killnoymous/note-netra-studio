@@ -7,7 +7,7 @@ const founders = [
     role: 'Founder',
     focus: 'Engineering & Product',
     initial: 'CS',
-    image: '/chaitanya_sethi.png',
+    image: '/chaitanya_sethi_cleaned.png',
     skills: ['System Design', 'Backend', 'Product Eng'],
     bio: 'Leads product engineering and system design. Experienced in building scalable applications, core logic, and production-ready architectures. Focused on turning complex ideas into reliable products.',
   },
