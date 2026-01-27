@@ -53,10 +53,10 @@ const ThreeDIntro = ({ onEnter }: ThreeDIntroProps) => {
                     className="mb-8"
                 >
                     <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-[#EEE8DD] mb-2 drop-shadow-2xl">
-                        NOTE NETRA
+                        KENET
                     </h1>
                     <h2 className="text-xl md:text-2xl font-light tracking-[0.5em] text-[#C0B8A0] uppercase">
-                        Studio
+                        TECHNOLOGIES
                     </h2>
                 </motion.div>
 
