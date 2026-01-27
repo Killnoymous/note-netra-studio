@@ -12,17 +12,32 @@ const queryClient = new QueryClient();
 
 import { useState } from "react";
 import ThreeDIntro from "./components/ThreeDIntro";
+import AvatarIntro from "./components/AvatarIntro";
 
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
+  const [showAvatar, setShowAvatar] = useState(false);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+    setShowAvatar(true);
+  };
+
+  const handleAvatarComplete = () => {
+    setShowAvatar(false);
+  };
+
+  const isContentVisible = !showIntro && !showAvatar;
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {showIntro && <ThreeDIntro onEnter={() => setShowIntro(false)} />}
-        <div className={`transition-opacity duration-1000 ${showIntro ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+        {showIntro && <ThreeDIntro onEnter={handleIntroComplete} />}
+        {showAvatar && <AvatarIntro onComplete={handleAvatarComplete} />}
+
+        <div className={`transition-opacity duration-1000 ${!isContentVisible ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
           <BrowserRouter>
             <AmbientBackground />
             <Routes>
