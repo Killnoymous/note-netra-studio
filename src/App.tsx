@@ -7,27 +7,21 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ScrollAssist from "./components/ScrollAssist";
 import AmbientBackground from "./components/AmbientBackground";
+import BackgroundCharacter3D from "./components/BackgroundCharacter3D"; // Import the new 3D background
 
 const queryClient = new QueryClient();
 
 import { useState } from "react";
 import ThreeDIntro from "./components/ThreeDIntro";
-import AvatarIntro from "./components/AvatarIntro";
 
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
-  const [showAvatar, setShowAvatar] = useState(false);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
-    setShowAvatar(true);
   };
 
-  const handleAvatarComplete = () => {
-    setShowAvatar(false);
-  };
-
-  const isContentVisible = !showIntro && !showAvatar;
+  const isContentVisible = !showIntro;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -35,11 +29,13 @@ const App = () => {
         <Toaster />
         <Sonner />
         {showIntro && <ThreeDIntro onEnter={handleIntroComplete} />}
-        {showAvatar && <AvatarIntro onComplete={handleAvatarComplete} />}
 
         <div className={`transition-opacity duration-1000 ${!isContentVisible ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
           <BrowserRouter>
+            {/* Render both the ambient effects and the 3D Character in the background */}
             <AmbientBackground />
+            <BackgroundCharacter3D />
+
             <Routes>
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
