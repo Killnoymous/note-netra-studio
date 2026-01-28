@@ -7,11 +7,14 @@ import { ArrowRight } from 'lucide-react';
 
 // --- Global Mouse Tracker ---
 const mouse = new THREE.Vector2(0, 0);
+const targetMouse = new THREE.Vector2(0, 0);
+
 if (typeof window !== 'undefined') {
     window.addEventListener('mousemove', (e) => {
         // Normalize: -1 to +1
-        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        const x = (e.clientX / window.innerWidth) * 2 - 1;
+        const y = -(e.clientY / window.innerHeight) * 2 + 1;
+        targetMouse.set(x, y);
     });
 }
 
@@ -21,42 +24,65 @@ interface ThreeDIntroProps {
 
 const LiquidChrome = () => {
     const meshRef = useRef<THREE.Mesh>(null);
+    const materialRef = useRef<any>(null);
 
-    useFrame((state) => {
+    // For calculating mouse velocity/distortion intensity
+    const lastMouse = useRef(new THREE.Vector2(0, 0));
+    const currentDistort = useRef(0.4);
+
+    useFrame((state, delta) => {
+        // Smooth global mouse lerping
+        mouse.lerp(targetMouse, 0.1);
+
         if (meshRef.current) {
-            // Smooth Rotation
-            meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.1;
-            meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.15;
+            // 1. ROTATION: Make the bubble face the mouse functionality
+            // This makes the liquid pattern "swirl" towards your cursor
+            meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, -mouse.y * 1.5, 0.1);
+            meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, mouse.x * 1.5, 0.1);
 
-            // Smooth Position Tracking (Follows Cursor)
-            // We multiply by a factor (e.g., 2) to give it enough range to move across the screen
-            const targetX = mouse.x * 3;
-            const targetY = mouse.y * 1.5;
+            // 2. DISTORTION REACTION: React to mouse movement speed
+            // Calculate velocity (how fast mouse is moving)
+            const velocity = mouse.distanceTo(lastMouse.current) / delta;
 
-            // Lerp for smooth, lag-free movement
-            // 0.1 is the 'smoothness' factor. Higher = snappier, Lower = floatier.
-            meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, targetX, 0.1);
-            meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, targetY, 0.1);
+            // Target distortion bumps up when moving fast
+            const targetDistort = 0.4 + Math.min(velocity * 2, 0.8);
+
+            // Lerp the actual distortion value for smoothness
+            currentDistort.current = THREE.MathUtils.lerp(currentDistort.current, targetDistort, 0.1);
+
+            if (materialRef.current) {
+                materialRef.current.distort = currentDistort.current;
+            }
+
+            // Update last mouse position
+            lastMouse.current.copy(mouse);
         }
     });
 
     return (
-        <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1} floatingRange={[-0.1, 0.1]}>
-            {/* Reduced floating range so it doesn't fight the mouse tracking too much */}
-            <mesh ref={meshRef} scale={2.2}>
-                {/* Sphere with high subdivision for smooth liquid effect */}
-                <sphereGeometry args={[1, 128, 128]} />
-                <MeshDistortMaterial
-                    color="#aaaaaa" // Light silver/chrome base
-                    attach="material"
-                    distort={0.5} // High distortion for "liquid" look
-                    speed={2}
-                    roughness={0} // Perfectly smooth like chrome
-                    metalness={1} // Fully metallic
-                    bumpScale={0.005} // Subtle surface detail
-                />
-            </mesh>
-        </Float>
+        <group>
+            {/* Interactive Lights that follow the mouse to create moving reflections */}
+            <group rotation-x={mouse.y} rotation-y={mouse.x}>
+                <pointLight position={[10, 10, 10]} intensity={1.5} color="#fff" />
+                <pointLight position={[-10, -10, -10]} intensity={1} color="#C0B8A0" />
+            </group>
+
+            <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5} floatingRange={[-0.05, 0.05]}>
+                <mesh ref={meshRef} scale={2.2}>
+                    <sphereGeometry args={[1, 128, 128]} />
+                    <MeshDistortMaterial
+                        ref={materialRef}
+                        color="#aaaaaa"
+                        attach="material"
+                        distort={0.4} // Base distortion
+                        speed={2}
+                        roughness={0}
+                        metalness={1}
+                        bumpScale={0.005}
+                    />
+                </mesh>
+            </Float>
+        </group>
     );
 };
 
@@ -77,16 +103,16 @@ const ThreeDIntro = ({ onEnter }: ThreeDIntroProps) => {
             {/* 3D Scene */}
             <div className="absolute inset-0 z-0">
                 <Canvas>
-                    <PerspectiveCamera makeDefault position={[0, 0, 8]} />
+                    <PerspectiveCamera makeDefault position={[0, 0, 7]} />
                     <ambientLight intensity={0.2} />
-                    {/* Dramatic rim lighting */}
-                    <pointLight position={[10, 10, 10]} intensity={1.5} color="#fff" />
-                    <pointLight position={[-10, -10, -10]} intensity={1} color="#C0B8A0" />
+
+                    {/* Scene Content */}
                     <group position={[0, 0, 0]}>
                         <LiquidChrome />
                     </group>
-                    {/* Floating particles like in the screenshots */}
-                    <Sparkles count={50} scale={10} size={2} speed={0.4} opacity={0.5} color="#C0B8A0" />
+
+                    {/* Floating particles background */}
+                    <Sparkles count={40} scale={12} size={2} speed={0.4} opacity={0.3} color="#C0B8A0" />
                     <Environment preset="studio" />
                 </Canvas>
             </div>
