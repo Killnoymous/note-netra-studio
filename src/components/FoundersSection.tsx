@@ -30,6 +30,15 @@ const founders = [
     skills: ['Strategy', 'Applied AI', 'R&D'],
     bio: 'Drives strategy, execution, and applied innovation. Led projects including vape detection systems, piezoelectric energy research, and applied AI tools. Focused on solving real institutional and operational problems.',
   },
+  {
+    name: 'Mohd. Zuhaib Ahmed',
+    role: 'Co-founder',
+    focus: 'Research & Development',
+    initial: 'MZ',
+    image: '/mohd_zuhaib_ahmed.jpg', // Placed a placeholder, actual image depends on what user has uploaded to public
+    skills: ['Research', 'Development', 'Innovation'],
+    bio: 'Heads Research and Development, focusing on cutting-edge innovations and exploring new technologies to continuously drive product evolution and growth.',
+  },
 ];
 
 const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: number }) => {
@@ -136,7 +145,7 @@ const FoundersSection = () => {
               for engineers.
             </h2>
             <p className="text-body">
-              Three founders with a shared obsession: building things that
+              Four founders with a shared obsession: building things that
               actually work.
             </p>
           </RevealOnScroll>
