@@ -62,7 +62,7 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
   return (
     <div
       ref={cardRef}
-      className="perspective-1000 h-[420px] cursor-pointer group"
+      className="perspective-1000 h-full min-h-[420px] w-full cursor-pointer group"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
@@ -71,9 +71,9 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
         className={`w-full h-full relative transition-transform duration-700 ease-in-out transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}
       >
         {/* Front Face: Profile */}
-        <div className="absolute inset-0 backface-hidden card-3d surface-elevated glow-subtle rounded-xl p-8 flex flex-col justify-center items-center text-center border-border">
+        <div className="absolute inset-0 backface-hidden card-3d surface-elevated glow-subtle rounded-xl p-8 flex flex-col justify-center items-center text-center border-border overflow-hidden">
           {/* Avatar / Image */}
-          <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center border border-border group-hover:border-primary/50 transition-colors duration-300 overflow-hidden shadow-lg">
+          <div className="w-24 h-24 shrink-0 mx-auto mb-6 rounded-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center border border-border group-hover:border-primary/50 transition-colors duration-300 overflow-hidden shadow-lg">
             {founder.image ? (
               <img
                 src={founder.image}
@@ -88,18 +88,20 @@ const FounderCard = ({ founder, index }: { founder: typeof founders[0], index: n
             )}
           </div>
 
-          <h3 className="font-semibold text-xl text-foreground mb-2">
-            {founder.name}
-          </h3>
-          <p className="text-sm font-medium text-primary mb-4 tracking-wide">{founder.role}</p>
-          <div className="h-px w-8 bg-border mb-4" />
-          <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider opacity-80">
+          <div className="h-14 flex items-center justify-center mb-2">
+            <h3 className="font-semibold text-xl text-foreground leading-tight">
+              {founder.name}
+            </h3>
+          </div>
+          <p className="text-sm font-medium text-primary mb-4 tracking-wide shrink-0">{founder.role}</p>
+          <div className="h-px w-8 bg-border mb-4 shrink-0" />
+          <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider opacity-80 shrink-0">
             {founder.focus}
           </p>
         </div>
 
         {/* Back Face: Info */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 surface-elevated rounded-xl p-8 flex flex-col justify-between border border-primary/20 bg-[#0A0A0A] shadow-depth">
+        <div className="absolute inset-0 backface-hidden rotate-y-180 surface-elevated rounded-xl p-8 flex flex-col justify-between border border-primary/20 bg-[#0A0A0A] shadow-depth overflow-hidden">
 
           {/* Top: Focus */}
           <div className="shrink-0">
